@@ -1,0 +1,195 @@
+from time import sleep
+import random
+import os
+import array
+os.system('clear')
+
+jackpot = random.randrange(20000, 99999, 1)
+threewon = random.randrange(150, 450, 1)
+fourwon = random.randrange (1000, 2500, 1)
+
+print("Reminder: Responses are case & character-sensitive!"); sleep(4)
+print("Welcome to the Grand Fiesta Slot Machine!"); sleep(2)
+print("The JACKPOT for today is: $" + str(jackpot)); sleep(2)
+ax = array.array = ["a", "b", "c", "d", "e"]
+cash = random.randrange(70, 150, 10)
+slot_started = 0
+
+def confirmationtres():
+  quit = input("Do you want to quit? Yes/No\n"); sleep(1)
+  if quit == ("No"):
+    print("I wouldn't recommend quitting either."); sleep(1)
+    confirmation()
+  elif quit == ("Yes"):
+    print("Thanks for playing."); sleep(0.5)
+    exit() 
+  else:
+    print("beep");
+    confirmation()
+def confirmationdos():
+  kweyso = input("Do you want to buy tokens? Yes/No\n"); sleep(1)
+  if kweyso == ("Yes"):
+    if cash > 2:
+      purchasetwo()
+    else:
+      print("You don't have enough money to even buy one."); sleep(2)
+      print("");
+      print("");
+      randomizer()
+  elif kweyso == ("No"):
+    confirmationtres()  
+  else:
+    print("I'm gonna go ahead and assume you made a typo."); sleep(2)
+    confirmation()
+def confirmation():
+  queso = input("Do you wish to continue? Yes/No\n"); sleep(1)
+  if queso == ("Yes"):
+    print("");
+  elif queso == ("No"):
+    confirmationdos()
+  else:
+    print("Typo?"); sleep(2)
+    confirmation()
+
+def purchaseCode():
+  global towkenz_cost
+  global raw_tokken
+  global total_tokken
+  global cash
+  print("You have $" + str(cash) + ".");
+  tokens_input = input("How many tokens would you like to buy?\n1 Token = $3\nSome great deals are here! For your first purchase, if you buy at least: \n5 Tokens, you get 2 BONUS TOKENS!\n10 Tokens, you get 5 BONUS TOKENS!\n25 Tokens, you get 15 BONUS TOKENS!\n50 Tokens, you get 25 BONUS TOKENS!\n"); sleep(0.5) 
+  raw_tokken = int(tokens_input)
+  bonus_tokken = 0
+  towkenz_cost = raw_tokken * 3
+  if tokens_input <= ("0"):
+    print("Why are you here, then?"); sleep(2)
+    exit()
+  if raw_tokken >= 5 and raw_tokken <= 9:
+    bonus_tokken = 2
+  elif raw_tokken >= 10 and raw_tokken <= 24:
+    bonus_tokken = 5
+  elif raw_tokken >= 25 and raw_tokken <= 49:
+    bonus_tokken = 15
+  elif raw_tokken >= 50:
+    bonus_tokken = 25
+  if cash >= towkenz_cost:
+    cash -= towkenz_cost
+  else:
+    print("Not enough money."); sleep(2)
+    print("")
+    purchaseCode()
+  total_tokken = raw_tokken + bonus_tokken
+
+def purchasetwo():
+  global token_add
+  global total_tokken
+  global cash
+  global towkenz_cost_2
+  print("You have $" + str(cash) + ".");
+  token_add = input("How many tokens will you buy? (1 Token = $3)\n"); sleep(2)
+  total_tokken += int(token_add)
+  towkenz_cost_2 = int(token_add) * 3
+  if token_add <= ("0"):
+    venz = input("You didn't want to buy any tokens? Yes/No\n"); sleep(2)
+    if venz == "Yes":
+      print("Okay. Back to the rolling."); sleep(2)
+      randomizer()
+    elif venz == "No":
+      purchasetwo()
+    else:
+      print("You can't keep messing up something this simple, you know."); sleep(2)
+      purchasetwo()
+  if cash >= towkenz_cost_2:
+    cash -= towkenz_cost_2
+  else:
+    print("Not enough money."); sleep(2)
+    print("")
+    purchasetwo()
+  print("Good luck!"); sleep(2)
+  if total_tokken == 1:
+    print("You have " + str(total_tokken) + " token and $" + str(cash) + "."); sleep(2)
+  else:
+    print("You have " + str(total_tokken) + " tokens and $" + str(cash) + "."); sleep(2)
+  
+    
+def randomizer():
+  global cash
+  global total_tokken
+  ax[0] = random.randint(0,9);
+  ax[1] = random.randint(0,9);
+  ax[2] = random.randint(0,9);
+  ax[3] = random.randint(0,9);
+  ax[4] = random.randint(0,9);
+  print(ax[0], end="  ", flush=True); sleep(1);
+  print(ax[1], end="  ", flush=True); sleep(1);
+  print(ax[2], end="  ", flush=True); sleep(1);
+  print(ax[3], end="  ", flush=True); sleep(1);
+  print(ax[4], end="  ", flush=True); sleep(1);
+  print("");
+  if (ax[0] == ax[1] == ax[2] and ax[2] != ax[3]) or (ax[3] == ax[1] == ax[2] and ax[3] != ax[4] and ax[0] != ax[1]) or (ax[4] == ax[3] == ax[2] and ax[1] != ax[2]):
+    print("Three in a row! Good job. You win $" + str(threewon) + "!"); sleep(2)
+    if ((ax[0] == 7) and (ax[1] == 7) and (ax[2] == 7)) or ((ax[1] == 7) and (ax[2] == 7) and (ax[3] == 7)) or ((ax[2] == 7) and (ax[3] == 7) and (ax[4] == 7)):
+      print("LUCKY SEVENS!! You win an additional $777!"); sleep(2)
+      cash += 777;
+    cash += threewon;
+    total_tokken -= 1;
+    checkers()
+    confirmation()
+    print("")
+    randomizer()
+  elif (ax[0] == ax[1] == ax[2] == ax[3] and ax[3] != ax[4]) or (ax[3] == ax[1] == ax[2] == ax[4] and ax[0] != ax[1]):
+    print("Four in a row! Lucky! You won $" + str(fourwon) + "!"); sleep(2)
+    if ((ax[0] == 7) and (ax[1] == 7) and (ax[2] == 7) and (ax[3] == 7)) or ((ax[1] == 7) and (ax[2] == 7) and (ax[3] == 7) and (ax[4] == 7)):
+      print("LUCKY SEVENS!! You win an additional $7777!"); sleep(2)
+      cash += 7777; 
+    cash += fourwon;
+    total_tokken -= 1;
+    checkers()
+    confirmation()
+    print("")
+    randomizer()
+  elif (ax[0] == ax[1] == ax[2] == ax[3] == ax[4]):
+    print("Five in a Row! You win the JACKPOT of $" + str(jackpot) + "! Congratulations!!"); sleep(2)
+    if ((ax[0] == 7) and (ax[1] == 7) and (ax[2] == 7) and (ax[3] == 7) and (ax[4] == 7)):
+      print("LUCKY SEVENS!! You win an additional $77777!"); sleep(2)
+      cash += 77777;
+    cash += jackpot;
+    total_tokken -= 1
+    checkers()
+    confirmation()
+    print("")
+    randomizer()
+  else:  
+    print("You did not win."); sleep(2)
+    total_tokken -= 1
+    checkers()
+    confirmation()
+    print("")
+    randomizer()
+
+def checkers():
+  global total_tokken
+  global cash
+  if total_tokken > 0:
+    if total_tokken == 1:
+      print("You have " + str(total_tokken) + " token and $" + str(cash) + "."); sleep(2)
+    else:
+      print("You have " + str(total_tokken) + " tokens and $" + str(cash) + "."); sleep(2)
+  elif cash > 2 and total_tokken == 0:  
+    prompter = input("You seem to be out of tokens. Do you want to buy more? Yes/No\n"); sleep(2)
+    if prompter == "Yes":
+      purchasetwo()
+    elif prompter == "No":
+      print("Thank you for playing. I hope you enjoyed."); sleep(2)
+      exit()
+    else:
+      print("Typo?"); sleep(2)
+      checkers()
+  elif cash <= 2 and total_tokken == 0:
+    print("Tough luck. You seem to be out of cash. Next time, maybe?"); sleep(2)
+    exit()
+
+purchaseCode()
+checkers()
+input("Press Enter to start."); sleep(0.5)
+randomizer()
